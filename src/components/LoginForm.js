@@ -2,6 +2,9 @@ import React, { useRef, useState } from "react";
 import validateData from "../Utility/ValidateLogin";
 import passwordShow from "../Assets/show.png";
 import passwordHide from "../Assets/hide.png";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Utility/firebase";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -9,6 +12,7 @@ const LoginForm = () => {
   const [passwordIcon, setPasswordIcon] = useState(true);
   const email = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate()
   const toggleSignUp = () => {
     setIsSignIn(!isSignIn);
   };
@@ -16,10 +20,40 @@ const LoginForm = () => {
     //validate the form
     const data = validateData(email.current.value, password.current.value);
     setErrorMessage(data);
+    // sign in sign up
+    if (data) return;
+
+    if (!isSignIn) {
+      // sign up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          navigate("/browse")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    } else if (isSignIn) {
+      //sign in logic
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          navigate("/browse")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "++" + errorMessage)
+        });
+    }
   };
   return (
-    <div className="bg-black absolute p-12 w-1/3 my-20 mx-auto right-0 left-0 bg-opacity-80">
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className="bg-black absolute p-12 w-1/3 my-20 mx-auto right-0 left-0 bg-opacity-80" onSubmit={(e) => e.preventDefault()}>
         <h1 className="text-3xl text-white font-bold">
           {isSignIn ? "Sign In" : "Sign Up"}{" "}
         </h1>
@@ -66,7 +100,6 @@ const LoginForm = () => {
           </button>
         </span>
       </form>
-    </div>
   );
 };
 

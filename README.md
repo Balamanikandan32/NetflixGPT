@@ -1,11 +1,17 @@
 # NETFLIXGPT 
 
-Create a react app by using npx create-react-app 
-configure the tailwind css into your react app 
-Routing
-Login page (header, BG-Image, Signin and sign up)
-Form Validation 
-useRef Hook
+- Create a react app by using npx create-react-app 
+- configure the tailwind css into your react app 
+- Routing
+- Login page (header, BG-Image, Signin and sign up)
+- Form Validation 
+- useRef Hook
+- Firebase Setup
+- Deploy the app 
+- Create sign up user account
+- Implement sign in user Api 
+- create store using reduxtoolkit (userSlice)
+- Implemented Sign out
 
 
 # Features 

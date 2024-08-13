@@ -3,7 +3,6 @@ const validateData = (email,password) => {
     const isPasswordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password)
     if (!isEmailValid) return "Email is not Valid"
     if (!isPasswordValid) return "Password is not valid"
-    console.log("data",email,password)
     return null 
 }
 
