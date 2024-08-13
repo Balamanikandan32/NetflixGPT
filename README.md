@@ -2,6 +2,10 @@
 
 Create a react app by using npx create-react-app 
 configure the tailwind css into your react app 
+Routing
+Login page (header, BG-Image, Signin and sign up)
+Form Validation 
+useRef Hook
 
 
 # Features 
