@@ -2,34 +2,68 @@ import { signOut } from "firebase/auth";
 import { auth } from "../Utility/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../Utility/userSlice";
+import { useDispatch } from "react-redux";
+import { APP_LOGO } from "../Utility/constants";
+
 const Header = () => {
-  const user = useSelector(store => store.user)
-  const navigate = useNavigate()
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => {
-        navigate("./error")
+        navigate("./error");
       });
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    // unsubscribe when compount unmounts
+    return () => unsubscribe()
+  } , []);
   return (
     <div className="absolute w-screen z-10 flex justify-between">
       <img
         className="w-44 ml-9"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={APP_LOGO}
         alt="Netflix- logo"
       />
-      {user && <div className="flex">
-        <button
-          className="bg-red-700 font-bold text-white mx-3 mt-5 w-20 h-8"
-          onClick={handleSignout}
-        >
-          Sign Out
-        </button>
-      </div>
-      }
+      {user && (
+        <div className="flex">
+          <img
+            className="w-8 h-8 mt-5"
+            src={user.photoURL}
+            alt="profile-icon"
+          />
+          <button
+            className="bg-red-700 font-bold text-white mx-3 mt-5 w-20 h-8 rounded-md"
+            onClick={handleSignout}
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
     </div>
   );
 };

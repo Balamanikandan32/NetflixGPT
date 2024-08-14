@@ -12,6 +12,9 @@
 - Implement sign in user Api 
 - create store using reduxtoolkit (userSlice)
 - Implemented Sign out
+- update displayname and profile picture (firebase update profile)
+- If user not logged in redirect /browse to login page and if user logged in redirect login page to browse page
+- unsubscribed to ononAuthStateChanged 
 
 
 # Features 
