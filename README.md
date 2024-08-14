@@ -15,6 +15,15 @@
 - update displayname and profile picture (firebase update profile)
 - If user not logged in redirect /browse to login page and if user logged in redirect login page to browse page
 - unsubscribed to ononAuthStateChanged 
+- login to TMDB website and generated access token 
+- get data from TMBD now playing movies 
+- create Movieslice and update store with movie data
+- Fetch data fro trailer video 
+- update store with trailer data
+- custom hooks for nowplayingmovie and movietrailer 
+- Embedded youtube video and make it autoplay and mute
+
+
 
 
 # Features 

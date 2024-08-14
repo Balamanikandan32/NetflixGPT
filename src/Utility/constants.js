@@ -3,3 +3,12 @@ export const APP_LOGO =
 
 export const USER_AVATAR =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStjt304IEFaJ1QzAbNkeifMxnd5Q6Alxl59mx1hkyPhQOdla4gaIBBZQLOqqMwA9EcOp8&usqp=CAU";
+
+export const MOVIE_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NjcyMGZjYjk2ZTA5MzhmYmEyNzI5MGEzN2RiNmM1OCIsIm5iZiI6MTcyMzYxNjczMS40NjM2OTIsInN1YiI6IjY2YmM0OWE0OWVjOTYxZGMxZGMzNTFjZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mylGjJ6Oxub3Tta909mkA4ixfJBC6kNgFeu60yGQUbE",
+  },
+};
