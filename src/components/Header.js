@@ -43,9 +43,9 @@ const Header = () => {
     return () => unsubscribe()
   } , []);
   return (
-    <div className="absolute w-screen z-10 flex justify-between">
+    <div className="absolute w-screen  px-8 py-2 z-10 flex justify-between">
       <img
-        className="w-44 ml-9"
+        className="w-44"
         src={APP_LOGO}
         alt="Netflix- logo"
       />

@@ -3,7 +3,7 @@ import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
 
 const MainContainer = () => {
-  const movies = useSelector((store) => store?.movies?.nowPLayingMovies);
+  const movies = useSelector((store) => store?.movies?.nowPlayingMovies);
   if (!movies) return;
   const movie = movies?.[Math.floor(Math.random() * movies?.length + 0)];
   const { original_title, overview, id} = movie;

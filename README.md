@@ -18,12 +18,14 @@
 - login to TMDB website and generated access token 
 - get data from TMBD now playing movies 
 - create Movieslice and update store with movie data
-- Fetch data fro trailer video 
+- Fetch data for trailer video 
 - update store with trailer data
 - custom hooks for nowplayingmovie and movietrailer 
 - Embedded youtube video and make it autoplay and mute
-
-
+- Build second container 
+- Build movie list and card 
+- Custom hooks for popular,toprated, upcoming movies
+- fetch data for all types of movies and update the store
 
 
 # Features 
