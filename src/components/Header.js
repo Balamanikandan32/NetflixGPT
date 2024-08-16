@@ -6,10 +6,13 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../Utility/userSlice";
 import { useDispatch } from "react-redux";
-import { APP_LOGO } from "../Utility/constants";
+import { APP_LOGO, multilanguage } from "../Utility/constants";
+import { toggleGptSearchView } from "../Utility/gptSlice";
+import { changeLangauge } from "../Utility/configSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store?.gpt?.showGptSearch);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSignout = () => {
@@ -40,17 +43,35 @@ const Header = () => {
       }
     });
     // unsubscribe when compount unmounts
-    return () => unsubscribe()
-  } , []);
+    return () => unsubscribe();
+  }, []);
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+  const handleLanguage =(e)=>{
+    dispatch(changeLangauge(e.target.value))
+  }
+
   return (
     <div className="absolute w-screen  px-8 py-2 z-10 flex justify-between">
-      <img
-        className="w-44"
-        src={APP_LOGO}
-        alt="Netflix- logo"
-      />
+      <img className="w-44" src={APP_LOGO} alt="Netflix- logo" />
       {user && (
         <div className="flex">
+          {showGptSearch && (
+            <select className = "bg-gray-500 text-white m-5 px-2 font-bold" onChange={handleLanguage}>
+              {multilanguage?.map((lang) => (
+                <option key={lang.identifier} value={lang.name}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            className="text-white bg-blue-600 mx-3 mt-5 w-32 h-8 rounded-md"
+            onClick={handleGptSearchClick}
+          >
+            {showGptSearch ? "Home Page" : "GPT Search"}
+          </button>
           <img
             className="w-8 h-8 mt-5"
             src={user.photoURL}

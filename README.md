@@ -26,6 +26,9 @@
 - Build movie list and card 
 - Custom hooks for popular,toprated, upcoming movies
 - fetch data for all types of movies and update the store
+- Gpt Search page
+- Gpt search Bar
+- Multi language feature in gpt search page
 
 
 # Features 
