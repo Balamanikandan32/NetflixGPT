@@ -36,6 +36,7 @@
 - Resused Movie List component to make movie suggestion container
 - Memoization
 - Added .env file
+- make Responsive site 
 
 
 # Features 

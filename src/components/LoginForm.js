@@ -69,7 +69,7 @@ const LoginForm = () => {
   };
   return (
     <form
-      className="bg-black absolute p-12 w-1/3 my-20 mx-auto right-0 left-0 bg-opacity-80"
+      className="bg-black absolute p-12 w-full md:w-1/3 my-20 mx-auto right-0 left-0 bg-opacity-80"
       onSubmit={(e) => e.preventDefault()}
     >
       <h1 className="text-3xl text-white font-bold">
